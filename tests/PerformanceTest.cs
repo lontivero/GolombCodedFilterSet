@@ -23,7 +23,6 @@ namespace GolombCodedFilterSet.UnitTests
 			const int maxBlockSize = 4 * 1000 * 1000;
 			const int avgTxSize = 250;					// currently the average is around 1kb
 			const int txoutCountPerBlock = maxBlockSize / avgTxSize;
-			const int txoutCountTotal = txoutCountPerBlock * blockCount;
 			const int avgTxoutPushDataSize = 20;		// P2PKH scripts has 20 bytes
 			const int walletAddressCount = 1000;        // We estimate that our user will have 1000 addresses.
 

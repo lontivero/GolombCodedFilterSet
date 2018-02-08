@@ -28,7 +28,6 @@ namespace GolombCodeFilterSet
 		public ulong ModulusP { get; internal set; }
 		public ulong ModulusNP { get; internal set; }
 		public IndexedFilter IndexedFilter { get; internal set; }
-		private BitArray _bitArray;
 		
 		public static Filter Build(byte[] k, byte P, IEnumerable<byte[]> data)
 		{
