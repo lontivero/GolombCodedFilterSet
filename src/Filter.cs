@@ -18,9 +18,12 @@ namespace GolombCodeFilterSet
 		}
 	}
 
-	// Implements a Golomb-coded set to be use in the creation of client-side filter
-	// for a new kind Bitcoin light clients. This code is based on the BIP:
-	// https://github.com/Roasbeef/bips/blob/master/gcs_light_client.mediawiki
+
+	/// <summary>
+	/// Implements a Golomb-coded set to be use in the creation of client-side filter
+	/// for a new kind Bitcoin light clients. This code is based on the BIP:
+	/// https://github.com/Roasbeef/bips/blob/master/gcs_light_client.mediawiki
+	/// </summary>
 	public class Filter
 	{
 		public byte P { get; internal set; }
@@ -32,7 +35,7 @@ namespace GolombCodeFilterSet
 		
 		public static Filter Build(byte[] k, byte P, IEnumerable<byte[]> data)
 		{
-			// NOTE: P must be a power of two as we target the specialized case of Golomb coding: Golomb - Rice coding
+			// NOTE: P must be a power of two as we target the specialized case of Golomb coding: Golomb - Rice coding.
 			if (P == 0x00 || (P & (P - 1)) != 0)
 				throw new ArgumentException("P has to be a power of two value", nameof(P));
 
@@ -58,18 +61,18 @@ namespace GolombCodeFilterSet
 
 		private static List<ulong> ConstructHashedSet(byte P, byte[] key, IEnumerable<byte[]> data)
 		{
-			// N the number of items to be inserted into the set
+			// N the number of items to be inserted into the set.
 			var dataArrayBytes = data as byte[][] ?? data.ToArray();
 			var N = dataArrayBytes.Count();
 
-			// The list of data item hashes
+			// The list of data item hashes.
 			var values = new ConcurrentBag<ulong>();
 			var modP = 1UL << P;
 			var modNP = ((ulong)N) * modP;
 			var nphi = modNP >> 32;
 			var nplo = (ulong)((uint)modNP);
 
-			// Process the data items and calculate the 64 bits hash for each of them
+			// Process the data items and calculate the 64 bits hash for each of them.
 			Parallel.ForEach(dataArrayBytes, item =>
 			{
 				var hash = SipHasher.Hash(key, item);
@@ -144,7 +147,7 @@ namespace GolombCodeFilterSet
 					return true;
 			}
 			catch (ArgumentOutOfRangeException)
-			// This means we reached the end of the bits stream ao, the value was not found
+			// This means we reached the end of the bits stream ao, the value was not found.
 			{
 				return false;
 			}
@@ -190,8 +193,7 @@ namespace GolombCodeFilterSet
 
 		private static ulong FastReduction(ulong value, ulong nhi, ulong nlo)
 		{
-			// First, we'll spit the item we need to reduce into its higher and
-			// lower bits.
+			// First, we'll spit the item we need to reduce into its higher and lower bits.
 			var vhi = value >> 32;
 			var vlo = (ulong)((uint)value);
 

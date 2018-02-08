@@ -21,15 +21,15 @@ namespace GolombCodedFilterSet.UnitTests
 			// per block.
 			const int blockCount = 100;
 			const int maxBlockSize = 4 * 1000 * 1000;
-			const int avgTxSize = 250;					// currently the average is around 1kb
+			const int avgTxSize = 250;					// Currently the average is around 1kb.
 			const int txoutCountPerBlock = maxBlockSize / avgTxSize;
 			const int txoutCountTotal = txoutCountPerBlock * blockCount;
-			const int avgTxoutPushDataSize = 20;		// P2PKH scripts has 20 bytes
+			const int avgTxoutPushDataSize = 20;		// P2PKH scripts has 20 bytes.
 			const int walletAddressCount = 1000;        // We estimate that our user will have 1000 addresses.
 
 			var key = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
 
-			// Generation of data to be added into the filter
+			// Generation of data to be added into the filter.
 			var random = new Random();
 
 			var blocks= new List< (Filter, List<byte[]>)>(blockCount);
@@ -48,7 +48,7 @@ namespace GolombCodedFilterSet.UnitTests
 			}
 
 
-			// Check that the filter can match every single txout in every block
+			// Check that the filter can match every single txout in every block.
 			foreach (var block in blocks)
 			{
 				var filter = block.Item1;
@@ -68,7 +68,7 @@ namespace GolombCodedFilterSet.UnitTests
 				walletAddresses.Add(walletAddress);
 			}
 
-			// Check that the filter can match every single txout in every block
+			// Check that the filter can match every single txout in every block.
 			foreach (var block in blocks)
 			{
 				var filter = block.Item1;
