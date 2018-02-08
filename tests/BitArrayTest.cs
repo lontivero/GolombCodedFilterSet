@@ -29,12 +29,12 @@ namespace GolombCodedFilterSet.UnitTests
 				}
 			}
 
-			// Get bits in the same int
+			// Get bits in the same int.
 			Assert.AreEqual((ulong) 0b111, barr.GetBits(0, 3));
 			Assert.AreEqual((ulong) 0b10111, barr.GetBits(0, 5));
 			Assert.AreEqual((ulong) 0b01010111010, barr.GetBits(3, 11));
 
-			// Get bits in cross int
+			// Get bits in cross int.
 			Assert.AreEqual((ulong) 0b101110101110101, barr.GetBits(24, 16));
 		}
 

@@ -2,7 +2,7 @@
 
 namespace GolombCodeFilterSet
 {
-	// Manages an array of bits allowing making bit-level operations as a big array of bits
+	/// <summary> Manages an array of bits allowing making bit-level operations as a big array of bits. </summary>
 	public sealed class BitArray
 	{
 		private uint[] _buffer;
@@ -128,7 +128,7 @@ namespace GolombCodeFilterSet
 
 		public void SetBits(int index, ulong val, int count)
 		{
-			//TODO: improve this method. This is a very naive approach
+			// TODO: improve this method. This is a very naive approach.
 			for (var i = 0; i < count; i++)
 			{
 				SetBit(index+i, (val & (1UL << i)) != 0);

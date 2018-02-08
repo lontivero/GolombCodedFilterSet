@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace GolombCodeFilterSet
 {
-	// Provides a view of an array of bits as a stream of bits
+	/// <summary> Provides a view of an array of bits as a stream of bits. </summary>
 	internal class BitStream
 	{
 		private readonly BitArray _buffer;
